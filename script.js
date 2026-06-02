@@ -104,15 +104,10 @@ yesBtn.addEventListener("click", () => {
 
   result.classList.remove("hidden");
 
-  // espera renderizar
-  setTimeout(() => {
-
-    result.scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-  }, 100);
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
 
 });
 
