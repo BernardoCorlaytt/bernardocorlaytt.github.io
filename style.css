@@ -365,18 +365,48 @@ button{
   font-family:'Great Vibes', cursive;
 }
 
+/* CORAÇÃO FOTO */
+
 .heart-photo{
-  width:300px;
-  height:300px;
-  overflow:hidden;
+  position:relative;
+  width:260px;
+  height:260px;
   margin:auto;
-  clip-path:path("M150 270 L30 150 A70 70 0 1 1 150 70 A70 70 0 1 1 270 150 Z");
+  transform:rotate(-45deg);
+  overflow:hidden;
+  border-radius:30px;
+}
+
+.heart-photo::before,
+.heart-photo::after{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  background:inherit;
+  border-radius:50%;
+}
+
+.heart-photo::before{
+  top:-130px;
+  left:0;
+}
+
+.heart-photo::after{
+  left:130px;
+  top:0;
 }
 
 .heart-photo img{
-  width:100%;
-  height:100%;
+  width:140%;
+  height:140%;
   object-fit:cover;
+
+  position:absolute;
+  top:-20%;
+  left:-20%;
+
+  transform:rotate(45deg);
 }
 
 /* HEARTS */
@@ -438,8 +468,22 @@ button{
   }
 
   .heart-photo{
-    width:220px;
-    height:220px;
+    width:200px;
+    height:200px;
+  }
+
+  .heart-photo::before,
+  .heart-photo::after{
+    width:200px;
+    height:200px;
+  }
+
+  .heart-photo::before{
+    top:-100px;
+  }
+
+  .heart-photo::after{
+    left:100px;
   }
 
   .final-section{
