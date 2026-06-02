@@ -1,0 +1,448 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Poppins', sans-serif;
+  background:#fff0f5;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+body.locked{
+  overflow:hidden;
+}
+
+/* CURSOR */
+
+#heartCursor{
+  position:fixed;
+  width:22px;
+  height:22px;
+  background:#ff2d6f;
+  transform:translate(-50%,-50%) rotate(45deg);
+  pointer-events:none;
+  z-index:999999;
+  transition:transform 0.08s linear;
+}
+
+#heartCursor::before,
+#heartCursor::after{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  background:#ff2d6f;
+  border-radius:50%;
+}
+
+#heartCursor::before{
+  top:-11px;
+  left:0;
+}
+
+#heartCursor::after{
+  left:-11px;
+  top:0;
+}
+
+/* BOTAO MUSICA */
+
+#musicBtn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:9999;
+
+  width:58px;
+  height:58px;
+
+  border:none;
+  border-radius:50%;
+
+  background:#ff2d6f;
+  color:white;
+
+  font-size:1.4rem;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  line-height:1;
+
+  cursor:pointer;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+  transition:0.3s;
+}
+
+#musicBtn:hover{
+  transform:scale(1.08);
+}
+
+/* INTRO */
+
+#intro{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#ff4f81,#ff2d6f);
+  z-index:99999;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:1s;
+}
+
+.hide-intro{
+  opacity:0;
+  pointer-events:none;
+}
+
+.envelope-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:30px;
+}
+
+.envelope{
+  position:relative;
+  width:320px;
+  height:220px;
+  background:#ff8fab;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+.envelope-top{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#ffb3c6;
+  clip-path:polygon(0 0,50% 50%,100% 0);
+  transform-origin:top;
+  transition:1s ease;
+  z-index:3;
+}
+
+.letter{
+  position:absolute;
+  left:50%;
+  top:100%;
+  transform:translate(-50%,-50%);
+  width:90%;
+  height:85%;
+  background:white;
+  border-radius:15px;
+  padding:25px;
+  text-align:center;
+  transition:1s ease;
+  z-index:2;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.letter h2{
+  font-family:'Great Vibes', cursive;
+  font-size:2.5rem;
+  color:#ff2d6f;
+  margin-bottom:10px;
+}
+
+.letter p{
+  color:#444;
+  line-height:1.6;
+}
+
+.open .envelope-top{
+  transform:rotateX(180deg);
+}
+
+.open .letter{
+  top:45%;
+}
+
+#openBtn{
+  padding:15px 30px;
+  border:none;
+  border-radius:50px;
+  background:white;
+  color:#ff2d6f;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+#openBtn:hover{
+  transform:scale(1.05);
+}
+
+/* HERO */
+
+.hero{
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1600&auto=format&fit=crop') center/cover;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  color:white;
+  max-width:700px;
+}
+
+.hero h1{
+  font-size:4rem;
+  margin-bottom:20px;
+  font-family:'Great Vibes', cursive;
+}
+
+.hero p{
+  font-size:1.2rem;
+  margin-bottom:30px;
+}
+
+.btn{
+  display:inline-block;
+  padding:14px 28px;
+  background:#ff4f81;
+  color:white;
+  text-decoration:none;
+  border-radius:50px;
+}
+
+/* SECTION */
+
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.section h2{
+  font-size:2.5rem;
+  margin-bottom:50px;
+  color:#ff2d6f;
+}
+
+.timeline,
+.notes-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.card,
+.note{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  color:#333;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.gallery img{
+  width:100%;
+  height:300px;
+  object-fit:cover;
+  border-radius:20px;
+}
+
+.counter{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+
+.counter div{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  min-width:150px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.counter span{
+  font-size:3rem;
+  font-weight:bold;
+  color:#ff2d6f;
+}
+
+/* FINAL */
+
+.final-section{
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff4f81,#ff2d6f);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.final-section h2{
+  color:white;
+}
+
+.buttons{
+  position:relative;
+  width:300px;
+  height:200px;
+}
+
+button{
+  padding:15px 30px;
+  border:none;
+  border-radius:50px;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+#yesBtn{
+  background:white;
+  color:#ff2d6f;
+}
+
+#noBtn{
+  position:absolute;
+  left:180px;
+  background:#222;
+  color:white;
+}
+
+.hidden{
+  display:none;
+}
+
+#result{
+  margin-top:40px;
+}
+
+#result h1{
+  color:white;
+  font-size:4rem;
+  margin-top:20px;
+  font-family:'Great Vibes', cursive;
+}
+
+.heart-photo{
+  width:300px;
+  height:300px;
+  overflow:hidden;
+  margin:auto;
+  clip-path:path("M150 270 L30 150 A70 70 0 1 1 150 70 A70 70 0 1 1 270 150 Z");
+}
+
+.heart-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* HEARTS */
+
+.hearts::before,
+.hearts::after{
+  content:"❤️ ❤️ ❤️ ❤️ ❤️";
+  position:fixed;
+  width:100%;
+  opacity:0.15;
+  font-size:2rem;
+  animation:float 15s linear infinite;
+}
+
+.hearts::after{
+  top:50%;
+  animation-duration:20s;
+}
+
+@keyframes float{
+
+  from{
+    transform:translateY(100vh);
+  }
+
+  to{
+    transform:translateY(-120vh);
+  }
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+  body{
+    cursor:auto;
+  }
+
+  #heartCursor{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:3rem;
+  }
+
+  .section h2{
+    font-size:2rem;
+  }
+
+  #result h1{
+    font-size:3rem;
+  }
+
+  .heart-photo{
+    width:220px;
+    height:220px;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .envelope{
+    width:280px;
+    height:200px;
+  }
+
+  .letter h2{
+    font-size:2rem;
+  }
+
+}
